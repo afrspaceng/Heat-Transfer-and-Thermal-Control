@@ -1,4 +1,4 @@
-Thermal control and heat transfer simulation 
+Thermal Control and Heat Transfer Simulation 
 Language: Python  
 Author: Alejandro Fernández Ruiz, Space Systems Engineer
 
