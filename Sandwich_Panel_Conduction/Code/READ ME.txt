@@ -1,13 +1,50 @@
-READ ME
+Thermal control and heat transfer simulation 
+Language: Python  
+Author: Alejandro Fernández Ruiz, Space Systems Engineer
 
-Section 1
+The purpose of this document is to explain the physical and mathematical fundamentals behind the Python code
+developed to simulate heat transfer and thermal control in a sandwich panel, as typically found in the space industry.
+An EBOX is installed on the panel, together with a heater designed to keep the electronic board within its survival
+temperature range at all times.
+
 
 ================================================================================
 CODE STRUCTURE
 ================================================================================
 
-main.py
-    └── The main script that executes the selected simulation section.
+Simulations:
+
+Section 1: analyses the temperature distribution across a panel using a
+one-dimensional steady-state heat conduction model. It calculates the effective 
+thermal properties of the panel, obtains analytical and numerical solutions for 
+different spatial discretizations, compares both approaches to assess the accuracy 
+of the numerical method, and plots the resulting temperature distributions.
+
+Section 2: analyses the steady-state temperature distribution across half
+and the full panel, considering localized heat generation in the EBOX and heater,
+using analytical and numerical methods.
+
+Section 3: calculates the steady-state temperature distribution of the 
+panel while modelling the EBOX as an independent thermal node coupled to the panel 
+through thermal contact conductance.
+
+Section 4: simulates the transient thermal behaviour of the panel and 
+EBOX using the explicit Euler method, accounting for heat conduction, thermal 
+radiation and heater operation. It calculates the temperature evolution over time
+and saves the final state for subsequent simulations.
+
+Section 5: simulates the transient thermal behaviour of the sandwich panel
+and EBOX using a thermostat with hysteresis to control the heater. It accounts for
+heat conduction and thermal radiation, calculates the temperature evolution over time,
+and saves the final thermal state for subsequent simulations.
+
+Section 6: simulates the transient thermal behaviour of the sandwich panel
+and EBOX using a Proportional-Integral (PI) controller to regulate the heater power
+and maintain the EBOX temperature at a desired value. It accounts for heat conduction
+and thermal radiation, calculates the temperature evolution over time, and saves the
+final thermal state and controller histories.
+
+To get the results, please, simulate section X, inside simulations folder.
 
 config/
     ├── common.py
@@ -15,8 +52,22 @@ config/
     │           dissipation values and boundary temperatures.
     │
     └── section_1.py
-            └── Defines the numerical discretization parameters for
-                Section 1, including the number of nodes to be evaluated.
+    │       └── Input parameters specific to Section 1.
+    │
+    └── section_2.py
+    │       └── Input parameters specific to Section 2.
+    │
+    └── section_3.py
+    │       └── Defines the numerical parameters for Section 3.
+    │
+    └── section_4.py
+    │       └── Input parameters specific to Section 4.
+    │
+    └── section_5.py
+    │       └── Input parameters specific to Section 5.
+    │
+    └── section_6.py
+            └── Input parameters specific to Section 6.
 
 models/
     ├── geometry.py
@@ -34,27 +85,32 @@ models/
                 resulting from the EBOX and heater dissipations.
 
 physics/
+    └── analytical_conduction.py
+    │       └── Analytical solutions for steady-state heat conduction.
+    │
+    │
     └── conduction.py
-            └── Contains the analytical and numerical solutions for
-                one-dimensional steady-state heat conduction with
-                uniform volumetric heat generation.
-                The numerical solution is obtained using the finite
-                difference method.
+             └── Analytical and numerical solutions for one-dimensional steady-state heat conduction.
+
+numerical/
+    └── discretization.py
+    │        └── Finite difference discretization of steady-state
+    │
+    └── steady_state.py
+              └── Numerical solvers for steady-state linear systems.
 
 simulations/
-    └── section_1.py
-            └── Coordinates the Section 1 simulation:
-                - Calculates the effective thermal conductivity and
-                  volumetric heat generation.
-                - Computes the numerical temperature distribution
-                  for different spatial discretizations.
-                - Evaluates the analytical temperature distribution.
-                - Compares analytical and numerical results by
-                  calculating their maximum absolute difference.
-                - Sends the results to the plotting module.
+    └── section_X.py
+              └── Coordinates the Section X simulation. This files are compiled to get results of 
+                   the different simulations.
 
 postprocessing/
     └── plotting.py
-            └── Contains the function that plots the analytical
-                temperature distribution together with the numerical
-                solutions obtained for the different mesh sizes.
+            └── Contains the functions that plots results for all study cases.
+
+================================================================================
+CONTACT
+================================================================================
+For any questions or suggestions, please, contact the author:  
+alejandrofr.spaceng@gmail.com
+
