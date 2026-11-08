@@ -1,0 +1,28 @@
+"""
+section_6.py
+
+Numerical and thermal parameters for Section 6.
+"""
+
+# Numerical parameters
+SECTION_6_NUMERICAL_PARTITION_PARAMETER = 4
+
+SECTION_6_TOTAL_TIME = 8000.0  # [s]
+
+
+# Radiation parameters
+SECTION_6_STEFAN_BOLTZMANN_CONSTANT = 5.67e-8  # [W/(m^2 K^4)]
+
+SECTION_6_EMISSIVITY = 0.8
+
+SECTION_6_RADIATION_TEMPERATURE = 273.15  # [K]
+
+
+# PI controller parameters
+SECTION_6_DESIRED_TEMPERATURE = 273.15 + 7.5  # [K]
+
+SECTION_6_PROPORTIONAL_GAIN = 0.01
+
+SECTION_6_INTEGRAL_GAIN = 0.0005
+
+SECTION_6_INTEGRAL_START_FRACTION = 0.1

@@ -1,0 +1,60 @@
+READ ME
+
+Section 1
+
+================================================================================
+CODE STRUCTURE
+================================================================================
+
+main.py
+    └── The main script that executes the selected simulation section.
+
+config/
+    ├── common.py
+    │       └── Defines common thermal parameters, including heat
+    │           dissipation values and boundary temperatures.
+    │
+    └── section_1.py
+            └── Defines the numerical discretization parameters for
+                Section 1, including the number of nodes to be evaluated.
+
+models/
+    ├── geometry.py
+    │       └── Defines the sandwich panel geometry, including its
+    │           dimensions and layer thicknesses.
+    │
+    ├── materials.py
+    │       └── Defines the thermal properties of the panel materials,
+    │           such as the thermal conductivity of the honeycomb core
+    │           and CFRP skins.
+    │
+    └── thermal_properties.py
+            └── Calculates the equivalent thermal conductivity of the
+                sandwich panel and the volumetric heat generation
+                resulting from the EBOX and heater dissipations.
+
+physics/
+    └── conduction.py
+            └── Contains the analytical and numerical solutions for
+                one-dimensional steady-state heat conduction with
+                uniform volumetric heat generation.
+                The numerical solution is obtained using the finite
+                difference method.
+
+simulations/
+    └── section_1.py
+            └── Coordinates the Section 1 simulation:
+                - Calculates the effective thermal conductivity and
+                  volumetric heat generation.
+                - Computes the numerical temperature distribution
+                  for different spatial discretizations.
+                - Evaluates the analytical temperature distribution.
+                - Compares analytical and numerical results by
+                  calculating their maximum absolute difference.
+                - Sends the results to the plotting module.
+
+postprocessing/
+    └── plotting.py
+            └── Contains the function that plots the analytical
+                temperature distribution together with the numerical
+                solutions obtained for the different mesh sizes.
